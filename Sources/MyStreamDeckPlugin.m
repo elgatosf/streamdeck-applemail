@@ -230,7 +230,7 @@ static NSString * CreateBase64EncodedString(NSString *inImagePath)
 		else if(numberOfUnreadEmails == 0)
 		{
 			[self.connectionManager setImage:self.base64MailIconString withContext:context withTarget:kESDSDKTarget_HardwareAndSoftware];
-			[self.connectionManager setTitle:nil withContext:context withTarget:kESDSDKTarget_HardwareAndSoftware];
+			[self.connectionManager setTitle:@"" withContext:context withTarget:kESDSDKTarget_HardwareAndSoftware];
 		}
 		else
 		{
