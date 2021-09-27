@@ -160,6 +160,9 @@ static NSString * CreateBase64EncodedString(NSString *inImagePath)
 // The Mail icon with a badge encoded in base64
 @property (strong) NSString *base64MailBadgeIconString;
 
+// The Mail icon with a long badge encoded in base64
+@property (strong) NSString *base64MailLongBadgeIconString;
+
 @end
 
 
@@ -185,13 +188,18 @@ static NSString * CreateBase64EncodedString(NSString *inImagePath)
 	
 	if(_base64MailIconString == nil)
 	{
-		_base64MailIconString = CreateBase64EncodedString(GetResourcePath(@"MailIcon.png"));
+		_base64MailIconString = CreateBase64EncodedString(GetResourcePath(@"mail.png"));
 	}
 	
 	if(_base64MailBadgeIconString == nil)
 	{
-		_base64MailBadgeIconString = CreateBase64EncodedString(GetResourcePath(@"MailBadgeIcon.png"));
+		_base64MailBadgeIconString = CreateBase64EncodedString(GetResourcePath(@"mail_unread.png"));
 	}
+    
+    if(self.base64MailLongBadgeIconString == nil)
+    {
+        self.base64MailLongBadgeIconString = CreateBase64EncodedString(GetResourcePath(@"mail_unread_long.png"));
+    }
 }
 
 
@@ -222,7 +230,12 @@ static NSString * CreateBase64EncodedString(NSString *inImagePath)
 	// Update each known context with the new value
 	for(NSString *context in self.knownContexts)
 	{
-		if(numberOfUnreadEmails > 0)
+        if(numberOfUnreadEmails > 9)
+        {
+            [self.connectionManager setImage:self.base64MailLongBadgeIconString withContext:context withTarget:kESDSDKTarget_HardwareAndSoftware];
+            [self.connectionManager setTitle:[NSString stringWithFormat:@"%d", numberOfUnreadEmails] withContext:context withTarget:kESDSDKTarget_HardwareAndSoftware];
+        }
+		else if(numberOfUnreadEmails > 0)
 		{
 			[self.connectionManager setImage:self.base64MailBadgeIconString withContext:context withTarget:kESDSDKTarget_HardwareAndSoftware];
 			[self.connectionManager setTitle:[NSString stringWithFormat:@"%d", numberOfUnreadEmails] withContext:context withTarget:kESDSDKTarget_HardwareAndSoftware];

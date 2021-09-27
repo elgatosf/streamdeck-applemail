@@ -1,11 +1,11 @@
 {
   "Actions": [
     {
-      "Icon": "MailIcon", 
+      "Icon": "Mail",
       "Name": "Apple Mail", 
       "States": [
         {
-          "Image": "MailIcon",
+          "Image": "mail",
           "FontSize": "18", 
           "FontStyle": "Bold", 
           "TitleAlignment": "middle", 
@@ -21,7 +21,7 @@
   "CodePath": "AppleMail", 
   "Description": "See how many unread emails you have.", 
   "Name": "Apple Mail", 
-  "Icon": "MailIcon", 
+  "Icon": "Mail", 
   "URL": "https://www.elgato.com/gaming/stream-deck", 
   "Version": "1.4.1",
   "OS": [
